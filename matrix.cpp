@@ -3,7 +3,16 @@
 #include <algorithm>
 
 using llong = long long;
-
+/**
+ * Printing the matrix by overloading << operator (can be used with cout or any out stream).
+ *
+ * Elements of a row are printed with a single space between and after 
+ * each row a new line is created.
+ *
+ * @param outStream an ostream object used to write the data.
+ * @param b is the matrix to be printed.
+ * @return outStream after clearing it.
+ */
 ostream& operator<<( ostream& outStream, matrix &b ) {
 	for(unsigned int i = 0; i < b.matrix_long.size(); i++, outStream << endl)
 		for(long long & it : b.matrix_long[i])
@@ -13,11 +22,19 @@ ostream& operator<<( ostream& outStream, matrix &b ) {
 }
 
 
+/**
+ * Adding to matrices together by overloading + operator 
+ *
+ * Each element in matrix a is added with its corresponding element in matrix b. The size
+ * have to matched to perform addition else error is thron.
+ *
+ * @param a first matrix to add
+ * @param b second matrix to add
+ * @return c new matrix of the added a, b
+ */
 matrix operator+(const matrix &a,const matrix &b) {
 	matrix c;
-	if( a.matrix_long.size() != a.matrix_long[0].size() || b.matrix_long.size() != b.matrix_long[0].size())
-		cerr << "Can't add up!! Not a square array." << endl;
-	else if(a.matrix_long.size() != b.matrix_long[0].size())
+	if(a.shape() != b.shape())
 		cerr << "Can't add up!! The two matrices are different in size." << endl;
 	else {
 		for(unsigned int i = 0; i < a.matrix_long.size(); i++) {
@@ -32,11 +49,19 @@ matrix operator+(const matrix &a,const matrix &b) {
     return c;
 }
 
+/**
+ * Adding to matrices together by overloading - operator 
+ *
+ * Each element in matrix a is subtracted with its corresponding element in matrix b. The size
+ * have to matched to perform addition else error is thron.
+ *
+ * @param a first matrix to subtract from
+ * @param b second matrix to subtract with
+ * @return c new matrix of the subtracted a, b
+ */
 matrix operator-(const matrix &a,const matrix &b) {
 	matrix c;
-	if( a.matrix_long.size() != a.matrix_long[0].size() || b.matrix_long.size() != b.matrix_long[0].size())
-		cerr << "Can't be subtracted!! Not a square array." << endl;
-	else if(a.matrix_long.size() != b.matrix_long[0].size())
+	if(a.shape() != b.shape())
 		cerr << "Can't be subtracted!! The two matrices are different in size." << endl;
 	else {
 		for(unsigned int i = 0; i < a.matrix_long.size(); i++) {
@@ -51,6 +76,16 @@ matrix operator-(const matrix &a,const matrix &b) {
 	return c;
 }
 
+/**
+ * Adding to matrices together by overloading - operator 
+ *
+ * Each element in matrix a is subtracted with its corresponding element in matrix b. The size
+ * have to matched to perform addition else error is thron.
+ *
+ * @param a first matrix to subtract from
+ * @param b second matrix to subtract with
+ * @return c new matrix of the subtracted a, b
+ */
 matrix operator*(const matrix &a,const matrix &b) {
 	matrix c;
 	if(a.matrix_long[0].size() != b.matrix_long.size())

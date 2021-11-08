@@ -30,7 +30,7 @@ class matrix {
 
 		unsigned long get_nrows() const{return nrows;};
 		unsigned long get_ncols() const{return ncols;};
-		tuple<int, int> shape(){return _shape;};
+		tuple<int, int> shape() const{return _shape;};
 		l2d_vector get_vector(){ return matrix_long;}
 		vector<llong> get_row(int row) const{return matrix_long[row];};
 		vector<llong> get_col(int col) const;
