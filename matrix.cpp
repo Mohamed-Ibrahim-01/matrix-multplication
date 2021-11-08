@@ -108,6 +108,14 @@ matrix operator*(const matrix &a,const matrix &b) {
 	return c;
 }
 
+/**
+ * Getting column data by index. 
+ *
+ * Each element in the column index given is collected in a vector and returned 
+ *
+ * @param col index of the column needed
+ * @return column a vector contains a sepecific column data. 
+ */
 vector<llong> matrix::get_col(int col)const{
 	vector<llong> column;
 	for(unsigned int row_i = 0; row_i < this->get_nrows(); row_i++){
@@ -115,6 +123,17 @@ vector<llong> matrix::get_col(int col)const{
 	}
 	return column;
 }
+
+/**
+ * Getting a portion of a row (sub row)
+ *
+ * A subset of row elements collected from a starting sepecific colmun index.
+ *
+ * @param row index of the row to get sub set from.
+ * @param col index of the column to start with. 
+ * @param width num of elements to be returned. 
+ * @return sub_row a vector contains a subset of row.
+ */
 
 vector<llong> matrix::get_sub_row(int row, int start, int width) const{
 	vector<llong> sub_row;
@@ -130,6 +149,17 @@ vector<llong> matrix::get_sub_row(int row, int start, int width) const{
 	}
 	return sub_row;
 }
+
+/**
+ * Getting a sub matrix of a valid size from any starting point.
+ *
+ * get_sub_row method is usd to get a sub row with a number of columns 
+ * and the process is repeated for the required number of rows.
+ *
+ * @param start index of the starting position (have to be top right) as tuple.
+ * @param shape subset matrix shape (#rows, #columns) as tuple.
+ * @return sub_matrix the required sub_matrix. 
+ */
 matrix matrix::get_sub_matrix(tuple<int, int> start, tuple<int, int> shape) const{
 	l2d_vector sub_matrix;
 	int start_row, start_col; tie(start_row, start_col) = start;
@@ -147,6 +177,15 @@ matrix matrix::get_sub_matrix(tuple<int, int> start, tuple<int, int> shape) cons
 	return matrix(sub_matrix);
 }
 
+/**
+ * Expanding matrix from the right with another matrix of same number of rows. 
+ *
+ * Each row in the base matrix is expanded (transformed by appending from back) 
+ * with the corresponding row in the expanding matrix.
+ *
+ * @param b a matrix to expand the base matrix (current matrix of the calling object) with.
+ * @return expanded_matrix the required exapnded matrix.
+ */
 matrix matrix::expand_right(matrix &b){
 	l2d_vector expanded = this->matrix_long;
 	if(this->get_nrows() != b.get_nrows())
@@ -163,6 +202,15 @@ matrix matrix::expand_right(matrix &b){
     return expanded_matrix;
 }
 
+/**
+ * Expanding matrix from the bottom (Stacking) with another matrix of same number of columns.
+ *
+ * Each row in the expanding matrix is taken and appended as a whole new row in the base
+ * matrix.
+ *
+ * @param b a matrix to expand the base matrix (current matrix of the calling object) with.
+ * @return expanded_matrix the required exapnded matrix.
+ */
 matrix matrix::stack_bottom(matrix &b){
 	l2d_vector stacked = this->matrix_long;
 	if(this->get_ncols() != b.get_ncols())
