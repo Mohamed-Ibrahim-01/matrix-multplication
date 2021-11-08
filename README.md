@@ -1,10 +1,18 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6186944&assignment_repo_type=AssignmentRepo)
 # sbe307_Task 1 --> Matrix Multplication
 
-## Name: ....
-## Sec: ....
-## B.N.: ....
+## Name: Mohamed Ahmed Mohamed Ibrahim
+## Sec: 2
+## B.N.: 11
 
+### Refrences :
+[![Matrix_Operator_Overloading](https://gist.github.com/jacyzon/4189944)]
+I have used this class as a starter file for the matrix class but `I changed the implementatoin of the operator * to be the naiive approch`.
+In addition to that I added a lot of utilty method to help in the implementatoin of the strassen algorithm like `get_ncols`, `get_nrows`
+, `shape`, `get_vector`, `expand_right`, `stack_bottom`, `get_sub_row`, `get_sub_matrix`.
+
+[![WIKI_Strassen](https://gist.github.com/jacyzon/4189944https://gist.github.com/jacyzon/4189944)]
+The algorithm definition of strassen.
 
 ### Implement this task using c++
 In this task you are required to fill 3 files
