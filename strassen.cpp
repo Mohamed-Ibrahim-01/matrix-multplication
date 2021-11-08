@@ -2,16 +2,14 @@
 matrix strassen_mat(matrix A,const matrix& B);
 
 /**
- * implement strassen divid and conquer algorithm for matrix multiplication
+ * Dividing the matrix to 4 matrices of size n/2 * n/2 
  * 
  * @param
- *  a --> a 2d vector with size 2^n * 2^n
- *  b --> a 2d vector with size 2^n * 2^n
+ *  A --> a matrix with size 2^n * 2^n
  * 
  * @return
- * the result of a*b "matrix multiplcation"
+ * A tuple of the 4 matrices from the input matrix.
 */
-
 tuple<matrix, matrix, matrix, matrix> divide(matrix A){
 	int nrows, ncols; tie(nrows, ncols) = A.shape();
 	tuple<int, int> sub_matrix_shape = make_tuple(nrows/2, ncols/2);
@@ -22,6 +20,23 @@ tuple<matrix, matrix, matrix, matrix> divide(matrix A){
 	return make_tuple(A11, A12, A21, A22);
 }
 
+/**
+ * 
+ * Merging 4 matrices into one matrix.
+ * 
+ * @param
+ *  C11 --> a matrix with size 2^n * 2^n to fill top left quarter.
+ *  C12 --> a matrix with size 2^n * 2^n to fill top right quarter.
+ *  C21 --> a matrix with size 2^n * 2^n to fill bottom left quarter.
+ *  C22 --> a matrix with size 2^n * 2^n to fill bottom right quarter.
+ *
+ *         /C11  C12\
+ *   C =   |        |
+ *         \C21  C21/
+ * 
+ * @return C
+ * A merged matrix of the 4 matrices .
+*/
 matrix conquer(matrix C11, matrix C12, matrix C21, matrix C22){
 	matrix C1 = C11.expand_right(C12);
 	matrix C2 = C21.expand_right(C22);
@@ -29,6 +44,16 @@ matrix conquer(matrix C11, matrix C12, matrix C21, matrix C22){
 	return C;
 }
 
+/**
+ * Strassen divide and conquer algorithm for matrix multiplication
+ * 
+ * @param
+ *  a --> a matrix with size 2^n * 2^n
+ *  b --> a matrix with size 2^n * 2^n
+ * 
+ * @return
+ * the result of a*b "matrix multiplcation" as matrix object.
+*/
 matrix strassen_mat(matrix A,const matrix& B){
     int nrows, ncols; tie(nrows, ncols) = A.shape();
     if(nrows == 1 && ncols ==1) return A*B;
@@ -50,6 +75,16 @@ matrix strassen_mat(matrix A,const matrix& B){
     return C;
 }
 
+/**
+ * Wrapper Strassen divide and conquer algorithm for matrix multiplication
+ * 
+ * @param
+ *  a --> a 2d vector with size 2^n * 2^n
+ *  b --> a 2d vector with size 2^n * 2^n
+ * 
+ * @return
+ * the result of a*b "matrix multiplcation" as 2d vector
+*/
 l2d_vector strassen(l2d_vector& a,l2d_vector& b){
 	matrix A(a), B(b);
 	return strassen_mat(A, B).get_vector();
