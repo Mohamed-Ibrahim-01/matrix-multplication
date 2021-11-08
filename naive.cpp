@@ -1,5 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include "matrix.h"
 
 /**
  * implement the naive matrix multiplication algorithm
@@ -11,6 +10,8 @@ using namespace std;
  * @return
  * the result of a*b "matrix multiplcation"
 */
-vector<vector<int>> naive(vector<vector<int>> a, vector<vector<int>> b){
-    
+l2d_vector naive(l2d_vector a,l2d_vector b){
+	matrix A(a), B(b);
+    matrix C = A*B;
+    return C.get_vector();
 }
