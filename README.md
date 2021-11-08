@@ -5,7 +5,7 @@
 ## Sec: 2
 ## B.N.: 11
 
-### Refrences :
+### References :
 [Matrix_Operator_Overloading](https://gist.github.com/jacyzon/4189944)
 I have used this class as a starter file for the matrix class but `I changed the implementatoin of the operator * to be the naiive approch`.
 In addition to that I added a lot of utilty method to help in the implementatoin of the strassen algorithm like `get_ncols`, `get_nrows`

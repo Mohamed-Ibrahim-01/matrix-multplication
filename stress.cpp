@@ -62,13 +62,10 @@ int main(int argc, char **argv)
         l2d_vector strassen_result;
 
         auto naive_start = high_resolution_clock::now();
-        // fill this line
         naive_result = naive(a, b);
-        matrix A(naive_result);
         auto naive_finish = high_resolution_clock::now();
 
         auto strassen_start = high_resolution_clock::now();
-        // fill this line
         strassen_result = strassen(a, b);
         auto strassen_finish = high_resolution_clock::now();
 
